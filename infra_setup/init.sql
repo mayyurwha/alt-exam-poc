@@ -12,8 +12,8 @@ create table if not exists ALT_SCHOOL.PRODUCTS
 );
 
 
-COPY ALT_SCHOOL.PRODUCTS (id, name, price)
-FROM '/data/products.csv' DELIMITER ',' CSV HEADER;
+--COPY ALT_SCHOOL.PRODUCTS (id, name, price)
+--FROM '/data/products.csv' DELIMITER ',' CSV HEADER;
 
 -- setup customers table following the example above
 
@@ -57,22 +57,23 @@ create table if not exists ALT_SCHOOL.LINE_ITEMS
 
 
 -- provide the command to copy ALT_SCHOOL.LINE_ITEMS data into POSTGRES
-COPY ALT_SCHOOL.LINE_ITEMS (lline_item_id, order_id, item_id, quantity)
+COPY ALT_SCHOOL.LINE_ITEMS (line_item_id, order_id, item_id, quantity)
 FROM '/data/line_items.csv' DELIMITER ',' CSV HEADER;
 
 -- setup the events table following the examle provided
 create table if not exists ALT_SCHOOL.EVENTS
 (
     -- TODO: PROVIDE THE FIELDS
-	event id seriel PRIMARY KEY,
+	event_id serial PRIMARY KEY,
 	customer_id uuid NOT NULL,
 	event_data jsonb NOT null,
 	event_timestamp timestamp NOT null
 );
 
 -- TODO: provide the command to copy ALT_SCHOOL.EVENTS data into POSTGRES
-COPY ALT_SCHOOL.EVENTS (lline_item_id, order_id, item_id, quantity)
+COPY ALT_SCHOOL.EVENTS (event_id, customer_id, event_data, event_timestamp)
 FROM '/data/events.csv' DELIMITER ',' CSV HEADER;
+
 
 
 
